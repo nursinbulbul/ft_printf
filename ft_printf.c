@@ -9,7 +9,11 @@ int handle_format(char specifier, va_list args)
     if (specifier == 'c')
     {
         return print_char(args);
+    } else if (specifier == 's')
+    {
+        return print_str(args);
     }
+    
     return 0;
     
 }
@@ -48,7 +52,7 @@ int ft_printf(const char *format, ...)
 
 int main()
 {
-    ft_printf("Hello %c", 'A');
-    printf("\nHello %c", 'A');
+    ft_printf("Hello %s", NULL);
+    printf("\nHello %s", NULL);
     return 0;
 }

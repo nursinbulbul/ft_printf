@@ -2,6 +2,7 @@ NAME =	libftprintf.a
 
 SRC	=	ft_printf.c \
 		print_char.c \
+		print_str.c \
 
 
 OBJ	=	$(SRC:.c=.o)
