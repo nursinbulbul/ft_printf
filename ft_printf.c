@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-int handle_format(char specifier, va_list args)
+int handle_format(char specifier, va_list *args)
 {
 
     if (specifier == 'c')
@@ -12,7 +12,11 @@ int handle_format(char specifier, va_list args)
     } else if (specifier == 's')
     {
         return print_str(args);
+    } else if (specifier == 'd')
+    {
+        return print_int(args);
     }
+    
     
     return 0;
     
@@ -34,7 +38,7 @@ int ft_printf(const char *format, ...)
     if (format[i] == '%')
     {
         i++;
-        total += handle_format(format[i], args);
+        total += handle_format(format[i], &args);
         i++;
     }
     else
@@ -52,7 +56,7 @@ int ft_printf(const char *format, ...)
 
 int main()
 {
-    ft_printf("Hello %s", NULL);
-    printf("\nHello %s", NULL);
+    ft_printf("Hello %d", -123);
+    printf("\nHello %d", -123);
     return 0;
 }

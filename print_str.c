@@ -2,13 +2,13 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-int print_str(va_list args)
+int print_str(va_list *args)
 {
     int i;
     i = 0;
 
     char *str;
-    str = va_arg(args, char*);
+    str = va_arg(*args, char*);
 
     if (str == NULL)
     {
