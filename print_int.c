@@ -30,7 +30,7 @@ static int	slong(long n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+static char	*ft_itoa(int n)
 {
 	long	nb;
 	int		i;

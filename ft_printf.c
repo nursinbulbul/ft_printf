@@ -12,10 +12,14 @@ int handle_format(char specifier, va_list *args)
     } else if (specifier == 's')
     {
         return print_str(args);
-    } else if (specifier == 'd')
+    } else if (specifier == 'd' || specifier == 'i')
     {
         return print_int(args);
+    } else if (specifier == 'u')
+    {
+        return print_unsigned(args);
     }
+    
     
     
     return 0;
@@ -56,7 +60,7 @@ int ft_printf(const char *format, ...)
 
 int main()
 {
-    ft_printf("Hello %d", -123);
-    printf("\nHello %d", -123);
+    ft_printf("Hello %u", 4632123);
+    printf("\nHello %u", 4632123);
     return 0;
 }
