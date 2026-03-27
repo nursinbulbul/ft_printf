@@ -18,12 +18,18 @@ int handle_format(char specifier, va_list *args)
     } else if (specifier == 'u')
     {
         return print_unsigned(args);
+    } else if (specifier == 'x' || specifier == 'X')
+    {
+        return print_hex(args, specifier);
+    } else if (specifier == 'p')
+    {
+        return print_pointer(args);
+    } else if (specifier == '%')
+    {
+        write(1, "%", 1);
+        return 1;
     }
-    
-    
-    
     return 0;
-    
 }
 
 int ft_printf(const char *format, ...)
@@ -60,7 +66,8 @@ int ft_printf(const char *format, ...)
 
 int main()
 {
-    ft_printf("Hello %u", 4632123);
-    printf("\nHello %u", 4632123);
+    char arr[] = {"nursin"};
+    ft_printf("Hello %p", arr);
+    printf("\nHello %p", arr);
     return 0;
 }
