@@ -1,5 +1,15 @@
-#include <stdarg.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_int.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbulbul <nbulbul@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/28 11:54:46 by nbulbul           #+#    #+#             */
+/*   Updated: 2026/03/28 12:28:07 by nbulbul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include <stdlib.h>
 
@@ -58,24 +68,20 @@ static char	*ft_itoa(int n)
 	return (num);
 }
 
-int print_int(va_list *args)
+int	print_int(va_list *args)
 {
-    int num;
-    num = va_arg(*args, int);
+	int		num;
+	char	*strnum;
+	int		i;
 
-    char *strnum;
-    strnum = ft_itoa(num);
-
-    int i;
-    i = 0;
-
-    while (strnum[i])
-    {
-        write(1, &strnum[i], 1);
-        i++;
-    }
-    
-    free(strnum);
-    return i;
-
+	num = va_arg(*args, int);
+	strnum = ft_itoa(num);
+	i = 0;
+	while (strnum[i])
+	{
+		write(1, &strnum[i], 1);
+		i++;
+	}
+	free(strnum);
+	return (i);
 }

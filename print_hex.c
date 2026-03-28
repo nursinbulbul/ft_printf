@@ -1,47 +1,56 @@
-#include <stdarg.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbulbul <nbulbul@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/28 11:54:37 by nbulbul           #+#    #+#             */
+/*   Updated: 2026/03/28 12:27:42 by nbulbul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static int print_hex_recursive(unsigned int n, char *base)
+static int	print_hex_recursive(unsigned int n, char *base)
 {
-    int totalcount;
-    totalcount = 0;
-    int baseindex;
+	int	totalcount;
+	int	baseindex;
 
-    if (n >= 16)
-    {
-        totalcount += print_hex_recursive(n / 16, base);
-    }
-    baseindex = n % 16;
-    write(1, &base[baseindex], 1);
-    totalcount += 1;
-    
-    return totalcount; 
+	totalcount = 0;
+	if (n >= 16)
+	{
+		totalcount += print_hex_recursive(n / 16, base);
+	}
+	baseindex = n % 16;
+	write(1, &base[baseindex], 1);
+	totalcount += 1;
+	return (totalcount);
 }
 
-int print_hex(va_list *args, char basetype)
+int	print_hex(va_list *args, char basetype)
 {
-    int total;
-    total = 0;
+	int				total;
+	unsigned int	num;
+	char			*base_x;
+	char			*base_upperx;
 
-    unsigned int num;
-    num = va_arg(*args, unsigned int);
-
-    char basex[] = {"0123456789abcdef"};
-    char baseX[] = {"0123456789ABCDEF"};
-
-    if (num == 0)
-    {
-        write(1, "0", 1);
-        return 1;
-    }
-    if (basetype == 'x')
-    {
-        total = print_hex_recursive(num, basex);
-    } else if (basetype == 'X')
-    {
-        total = print_hex_recursive(num, baseX);
-    }
-    
-    return total;
+	base_x = "0123456789abcdef";
+	base_upperx = "0123456789ABCDEF";
+	total = 0;
+	num = va_arg(*args, unsigned int);
+	if (num == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	if (basetype == 'x')
+	{
+		total = print_hex_recursive(num, base_x);
+	}
+	else if (basetype == 'X')
+	{
+		total = print_hex_recursive(num, base_upperx);
+	}
+	return (total);
 }

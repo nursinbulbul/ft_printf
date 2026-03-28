@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   testmain.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbulbul <nbulbul@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/28 11:54:59 by nbulbul           #+#    #+#             */
-/*   Updated: 2026/03/28 12:17:31 by nbulbul          ###   ########.fr       */
+/*   Created: 2026/03/28 12:28:48 by nbulbul           #+#    #+#             */
+/*   Updated: 2026/03/28 12:40:23 by nbulbul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int	print_str(va_list *args)
+int	main(void)
 {
-	int		i;
-	char	*str;
+	char	*arr;
 
-	i = 0;
-	str = va_arg(*args, char *);
-	if (str == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	arr = "nursin";
+	//ft_printf("Hello %c %s %p %d %i %u %x %X %%", 'a', arr, arr, 243, -2341, 8765, 32, 32);
+	//printf("\nHello %c %s %p %d %i %u %x %X %%", 'a', arr, arr, 243, -2341, 8765, 32, 32);
+	
+    ft_printf("Hello %%%");
+	printf("\nHello %%%");
+    
+    return (0);
 }
