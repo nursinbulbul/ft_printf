@@ -6,7 +6,7 @@
 /*   By: nbulbul <nbulbul@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 11:54:46 by nbulbul           #+#    #+#             */
-/*   Updated: 2026/03/28 12:28:07 by nbulbul          ###   ########.fr       */
+/*   Updated: 2026/03/28 16:32:02 by nbulbul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ int	print_int(va_list *args)
 	i = 0;
 	while (strnum[i])
 	{
-		write(1, &strnum[i], 1);
+		if (write(1, &strnum[i], 1) == -1)
+		{
+			free(strnum);
+			return (-1);
+		}
 		i++;
 	}
 	free(strnum);

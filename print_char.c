@@ -6,7 +6,7 @@
 /*   By: nbulbul <nbulbul@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 11:54:29 by nbulbul           #+#    #+#             */
-/*   Updated: 2026/03/28 12:19:35 by nbulbul          ###   ########.fr       */
+/*   Updated: 2026/03/28 16:20:48 by nbulbul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	print_char(va_list *args)
 	char	c;
 
 	c = va_arg(*args, int);
-	write(1, &c, 1);
+	if (write(1, &c, 1) == -1)
+		return (-1);
 	return (1);
 }

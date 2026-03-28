@@ -6,7 +6,7 @@
 /*   By: nbulbul <nbulbul@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 11:54:37 by nbulbul           #+#    #+#             */
-/*   Updated: 2026/03/28 12:27:42 by nbulbul          ###   ########.fr       */
+/*   Updated: 2026/03/28 16:20:50 by nbulbul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	print_hex_recursive(unsigned int n, char *base)
 		totalcount += print_hex_recursive(n / 16, base);
 	}
 	baseindex = n % 16;
-	write(1, &base[baseindex], 1);
+	if (write(1, &base[baseindex], 1) == -1)
+		return (-1);
 	totalcount += 1;
 	return (totalcount);
 }
@@ -41,7 +42,8 @@ int	print_hex(va_list *args, char basetype)
 	num = va_arg(*args, unsigned int);
 	if (num == 0)
 	{
-		write(1, "0", 1);
+		if (write(1, "0", 1) == -1)
+			return (-1);
 		return (1);
 	}
 	if (basetype == 'x')

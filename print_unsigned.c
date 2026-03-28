@@ -6,7 +6,7 @@
 /*   By: nbulbul <nbulbul@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 11:55:05 by nbulbul           #+#    #+#             */
-/*   Updated: 2026/03/28 12:17:34 by nbulbul          ###   ########.fr       */
+/*   Updated: 2026/03/28 16:46:11 by nbulbul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ int	print_unsigned(va_list *args)
 	i = 0;
 	while (numstr[i])
 	{
-		write(1, &numstr[i], 1);
+		if (write(1, &numstr[i], 1) == -1)
+		{
+			free(numstr);
+			return (-1);
+		}
 		i++;
 	}
 	free(numstr);
